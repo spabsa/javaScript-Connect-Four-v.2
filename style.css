@@ -1,0 +1,231 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	transition: all 3s ease;
+	background-color: #bababa;
+}
+
+.board-wrapper {
+	padding-top: 100px;
+	display: flex;
+	justify-content: center;
+	margin: auto auto 0 auto; 
+	position: relative;
+	overflow: hidden;
+	transition: all 2s ease;
+}
+
+.board {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 706px;
+	background-color: #00c;
+	padding: 3px;
+	z-index: 1;
+}
+
+.board > div {
+	width: 100px;
+	height: 100px;
+	position: relative;
+}
+
+.board div span {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: #00c;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	box-shadow: inset 0px 0px 13px #0606aa;
+}
+
+.board div span:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+	background: radial-gradient(circle, transparent 40px, blue 0);
+	z-index: 3;
+	border: 3px solid #00c;
+}
+
+.board .chip {
+	display: block;
+	position: absolute;
+	background-color: transparent;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+}
+
+.board .chip:after {
+	content: "";
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 15px solid red;
+	background-color: red;
+	box-shadow: inset 0px 0px 20px #cc0000;
+	position: absolute;
+	left: 3px;
+	top: 0;
+	opacity: 0;
+	transition: all .5s ease;
+}
+
+.board > .chip.switch:after {background-color: yellow; border: 15px solid yellow; box-shadow: inset 0px 0px 20px #ced639;}
+
+.board div:nth-of-type(7n+1):hover ~ .chip:after{transform: translateX(10px); opacity: 1;}
+.board div:nth-of-type(7n+1):hover ~ .chip:before{transform: translateX(10px); opacity: 1;}
+.board div:nth-of-type(7n+2):hover ~ .chip:after{transform: translateX(110px); opacity: 1;}
+.board div:nth-of-type(7n+2):hover ~ .chip:before{transform: translateX(110px); opacity: 1;}
+.board div:nth-of-type(7n+3):hover ~ .chip:after{transform: translateX(210px); opacity: 1;}
+.board div:nth-of-type(7n+3):hover ~ .chip:before{transform: translateX(210px); opacity: 1;}
+.board div:nth-of-type(7n+4):hover ~ .chip:after{transform: translateX(310px); opacity: 1;}
+.board div:nth-of-type(7n+4):hover ~ .chip:before{transform: translateX(310px); opacity: 1;}
+.board div:nth-of-type(7n+5):hover ~ .chip:after{transform: translateX(410px); opacity: 1;}
+.board div:nth-of-type(7n+5):hover ~ .chip:before{transform: translateX(410px); opacity: 1;}
+.board div:nth-of-type(7n+6):hover ~ .chip:after{transform: translateX(510px); opacity: 1;}
+.board div:nth-of-type(7n+6):hover ~ .chip:before{transform: translateX(510px); opacity: 1;}
+.board div:nth-of-type(7n+7):hover ~ .chip:after{transform: translateX(610px); opacity: 1;}
+.board div:nth-of-type(7n+7):hover ~ .chip:before{transform: translateX(610px); opacity: 1;}
+
+.red,
+.yellow {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 15px solid var(--c, red); /*ask about this*/
+  background-color: var(--c, red);
+  box-shadow: inset 0px 0px 20px var(--s, #cc0000);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index:1;
+  animation-fill-mode: forwards;
+  animation-duration: .6s;
+  animation-timing-function: ease-in;
+}
+
+.yellow {
+  --c: yellow;
+  --s: #ced639;
+}
+
+.show-results {
+	font-family: 'Orbitron';
+	font-size: 5rem;
+	position: absolute;
+	top: 40vh;
+	z-index: -1;
+}
+
+.play-again {
+	font-family: 'Orbitron';
+	font-size: 2rem;
+	background-color: limegreen;
+	color: white;
+	padding: 1px 15px 5px 15px;
+	border-radius: 10px;
+	position: absolute;
+	top: 52vh;
+	cursor: pointer;
+	transition: all .5s ease;
+}
+
+.play-again:hover {
+	background: #019b31;
+}
+
+@keyframes winner {
+	from {background-color: white; border: 15px solid limegreen; box-shadow: none;}
+	to {background-color: limegreen; border: 15px solid white; box-shadow: none;}
+}
+
+@keyframes drop-5 {
+  from {
+    top: -1226px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes drop-4 {
+  from {
+    top: -1000px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes drop-3 {
+  from {
+    top: -800px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes drop-2 {
+  from {
+    top: -600px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes drop-1 {
+  from {
+    top: -400px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes drop-0 {
+  from {
+    top: -200px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+
+
+
+
